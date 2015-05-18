@@ -3,39 +3,31 @@ test("this bit should describe, to a human, what the test is for", function() {
 });
 
 
-
-
-
-
-
-test("check that the header exist'", function() {
+test("check that the header exist", function() {
     var iframe = document.getElementById('if-index');
 
     var target = iframe.contentDocument || iframe.contentWindow.document;
 
     var initial = target.getElementById('heading');
 
-    equal(initial, 'Hello World!', 'it works');
+    var upper = getComputedStyle(initial,null).textTransform;
+
+    equal(initial.innerHTML, 'The test of both worlds', 'header text is right and exists');
+
+    equal(upper, "uppercase", 'uppercase');
 });
 
-SC.initialize({
-  client_id: 'a3f9118b2e28c73d8d2e68a609815e7d'
+
+
+test("add function", function() {
+    var x=Math.floor(Math.random()*1000);
+    var y=Math.floor(Math.random()*1000);
+    equal(add(x,y), x+y, 'it works');
+    equal(add(10,2),12)
+
+
 });
 
-$(document).ready(function() {
-    SC.stream('/tracks/293', function(sound) {
-        $( "#start" ).click(function() {
-            sound.start();
-        }),
-        $( "#stop" ).click(function() {
-            sound.stop();
-        });
-});
-});
 
-$(document).ready(function() {
-    SC.get('/tracks/42242000', function(track) {
-      SC.oEmbed(track.permalink_url, document.getElementById('player'));
-    });
-}
-)
+// test("Has the CSS loaded?", function() {
+// } )
